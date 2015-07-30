@@ -39,8 +39,12 @@ describe('AnswerGenerator', function() {
     });
 
     it('can return a random number', function() {
+      var value = parseInt(Math.random() * 10000);
       var result = answerGenerator.generate();
-      expect(result).toBe(1);
+
+      spyOn(answerGenerator,'generate').and.returnValue(value);
+
+      expect(answerGenerator.generate()).not.toEqual(result);
     });
 
     it('can return a four-digit', function() {
