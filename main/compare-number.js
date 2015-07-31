@@ -10,7 +10,7 @@ CompareNumber.prototype.compare = function(answer, input) {
   if(answer === input){
     countA += 4;
   }else{
-
+    
     for(var i = 0; i < input.length; i++){
       var index = answer.indexOf(input[i]);
       if(index !== -1 && i !== index){

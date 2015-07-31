@@ -5,7 +5,7 @@ var AnswerGenerator = require('../main/answer-generator');
 describe('AnswerGenerator', function() {
   describe('#generate()', function() {
 
-    var answerGenerator;
+    var result;
 
     beforeEach(function() {
       var count = 0;
@@ -14,11 +14,11 @@ describe('AnswerGenerator', function() {
         return array[count++];
       });
 
-      answerGenerator = new AnswerGenerator(Math);
+      var answerGenerator = new AnswerGenerator(Math);
+      result = answerGenerator.generate();
     });
 
     it('can return a String no repeat', function() {
-      var result = answerGenerator.generate();
       var length =  result.toString().length;
       var isRepeat = false;
 
@@ -32,12 +32,10 @@ describe('AnswerGenerator', function() {
     });
 
     it('can return a random number', function() {
-      var result = answerGenerator.generate();
       expect(result).toBe('1234');
     });
 
     it('can return a four-digit', function() {
-      var result = answerGenerator.generate();
       var length = result.toString().length;
       expect(length).toBe(4);
     });
