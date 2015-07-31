@@ -1,14 +1,17 @@
 'use strict';
 
-function AnswerGenerator(){
-
+function AnswerGenerator(math){
+  this.math = math;
 }
 
 AnswerGenerator.prototype.generate = function() {
-  var result ;
+  var result = '';
 
-  while(!/^(?!\d*?(\d)\d*?\1)\d{4}$/.test(result)){
-    result = parseInt(Math.random()*10000);
+  while(result.length < 4){
+    var number = parseInt(this.math.random()*10);
+    if(result.indexOf(number) === -1){
+      result += number;
+    }
   }
 
   return result;

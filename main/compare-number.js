@@ -1,7 +1,6 @@
 'use strict';
 
 function CompareNumber(){
-
 }
 
 CompareNumber.prototype.compare = function(answer, input) {
@@ -20,7 +19,6 @@ CompareNumber.prototype.compare = function(answer, input) {
         countA += 1;
       }
     }
-
   }
 
   return countA + 'A' + countB + 'B';

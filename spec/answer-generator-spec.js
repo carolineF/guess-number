@@ -8,7 +8,13 @@ describe('AnswerGenerator', function() {
     var answerGenerator;
 
     beforeEach(function() {
-      answerGenerator = new AnswerGenerator();
+      var count = 0;
+      Math.random = jasmine.createSpy('Math random()').and.callFake(function() {
+        var array = [0.1, 0.2, 0.2, 0.3, 0.4];
+        return array[count++];
+      });
+
+      answerGenerator = new AnswerGenerator(Math);
     });
 
     it('can return a String no repeat', function() {
@@ -25,26 +31,9 @@ describe('AnswerGenerator', function() {
       expect(isRepeat).toBe(false);
     });
 
-    it('can return a number', function() {
-      var result = answerGenerator.generate();
-      var isNumber = true;
-
-      for(var i = 0; i < result.toString().length; i++){
-        if(isNaN(result.toString()[i])){
-          isNumber = false;
-        }
-      }
-
-      expect(isNumber).toBe(true);
-    });
-
     it('can return a random number', function() {
-      var value = parseInt(Math.random() * 10000);
       var result = answerGenerator.generate();
-
-      spyOn(answerGenerator,'generate').and.returnValue(value);
-
-      expect(answerGenerator.generate()).not.toEqual(result);
+      expect(result).toBe('1234');
     });
 
     it('can return a four-digit', function() {
