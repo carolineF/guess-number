@@ -1,7 +1,7 @@
 'use strict';
 
 function AnswerGenerator(math){
-  this.math = math;
+  this.math = math || Math;
 }
 
 AnswerGenerator.prototype.generate = function() {
