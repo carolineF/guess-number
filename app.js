@@ -21,16 +21,24 @@ console.log('Welcome!');
   var count = 6;
   // This is an example for reading & writing in console.
 rl.on('line', function(){
-  rl.question('Please guess a four-digit number ?', function(answer) {
+  rl.question('Please input your number(' + count + '):', function(answer) {
+
+    for(var i = 0; i < answer.length; i++){
+      if(answer.indexOf(answer[i],i+1,-i) !== -1){
+        console.log('Cannot input duplicate numbers!');
+        return;
+      }
+    }
+
     var result = guess.getResult(answer);
     if(result === '4A0B' && count > 0){
-      console.log('you are right');
+      console.log('Congratulations!');
       rl.close();
-      return;
     }else if(count > 0){
       count--;
       console.log(result);
     }
+
     if(count <= 0){
       console.log('Game Over!');
       rl.close();
